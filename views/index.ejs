@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Pdfs</title>
+</head>
+<body>
+    <form action="/merge" method="post" enctype="multipart/form-data">
+        <label for="pdf1">PDF 1</label>
+        <input type="file" name="pdfs"  id="pdf1" accept="application/pdf">
+        <br>
+        <br>
+        <label for="pdf2">PDF 2</label>
+        <input type="file" name="pdfs"  id="pdf2" accept="application/pdf">
+        <br>
+        <br>
+        <button type="submit">Merge</button>
+        
+    </form>
+    <p class="errorMessage"></p>
+    <script>
+        let form = document.querySelector('form')
+        let pdfs = document.querySelectorAll('input')
+        let errorMessage = document.querySelector('.errorMessage')
+        errorMessage.innerText = ''
+        
+        form.addEventListener('submit',async(e)=>{
+            
+            e.preventDefault();
+            
+            for(let i = 0 ; i < pdfs.length ;i++)
+            {
+                if(pdfs[i].files.length===0)
+                {
+                    alert("Please select all files for input.")
+                    return;
+                }
+            }
+            form.submit();      
+        });
+    </script>
+
+</body>
+</html>
